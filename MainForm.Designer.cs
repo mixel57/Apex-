@@ -131,9 +131,9 @@ namespace Apex_
             this.labelSchedule.Font = new System.Drawing.Font("Tahoma", 15F);
             this.labelSchedule.Location = new System.Drawing.Point(7, 185);
             this.labelSchedule.Name = "labelSchedule";
-            this.labelSchedule.Size = new System.Drawing.Size(116, 24);
+            this.labelSchedule.Size = new System.Drawing.Size(159, 24);
             this.labelSchedule.TabIndex = 4;
-            this.labelSchedule.Text = "Расписание";
+            this.labelSchedule.Text = "Рабочий график";
             this.labelSchedule.Click += new System.EventHandler(this.labelSchedule_Click);
             // 
             // label1
@@ -201,7 +201,7 @@ namespace Apex_
             this.buttonRefrersh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonRefrersh.ForeColor = System.Drawing.SystemColors.ControlText;
             this.buttonRefrersh.Image = ((System.Drawing.Image)(resources.GetObject("buttonRefrersh.Image")));
-            this.buttonRefrersh.Location = new System.Drawing.Point(452, 0);
+            this.buttonRefrersh.Location = new System.Drawing.Point(440, 0);
             this.buttonRefrersh.Name = "buttonRefrersh";
             this.buttonRefrersh.Size = new System.Drawing.Size(48, 48);
             this.buttonRefrersh.TabIndex = 3;
@@ -219,11 +219,11 @@ namespace Apex_
             this.buttonAddUser.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SandyBrown;
             this.buttonAddUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonAddUser.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.buttonAddUser.Location = new System.Drawing.Point(500, 0);
+            this.buttonAddUser.Location = new System.Drawing.Point(488, 0);
             this.buttonAddUser.Name = "buttonAddUser";
-            this.buttonAddUser.Size = new System.Drawing.Size(111, 48);
+            this.buttonAddUser.Size = new System.Drawing.Size(117, 48);
             this.buttonAddUser.TabIndex = 2;
-            this.buttonAddUser.Text = "Создать";
+            this.buttonAddUser.Text = "Создать аккаунт";
             this.buttonAddUser.UseVisualStyleBackColor = false;
             this.buttonAddUser.Click += new System.EventHandler(this.buttonAddUser_Click);
             // 
@@ -248,9 +248,9 @@ namespace Apex_
             this.buttonLogout.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SandyBrown;
             this.buttonLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonLogout.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.buttonLogout.Location = new System.Drawing.Point(611, 0);
+            this.buttonLogout.Location = new System.Drawing.Point(605, 0);
             this.buttonLogout.Name = "buttonLogout";
-            this.buttonLogout.Size = new System.Drawing.Size(111, 48);
+            this.buttonLogout.Size = new System.Drawing.Size(117, 48);
             this.buttonLogout.TabIndex = 0;
             this.buttonLogout.Text = "Выйти";
             this.buttonLogout.UseVisualStyleBackColor = false;

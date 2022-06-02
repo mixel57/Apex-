@@ -40,7 +40,7 @@ namespace Apex_
                 radioButtonStaff.Text = "Расписание выбранного сотрудника";
                 buttonLeft.Text = "Удалить";
                 buttonRight.Text = "Добавить";
-                if (adminCheck == false) buttonRight.Enabled = false;
+                if (adminCheck == false) { buttonRight.Enabled = false; buttonLeft.Enabled = false; }
             }
 
             if (btn == "отметки")
