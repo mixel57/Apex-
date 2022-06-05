@@ -31,10 +31,13 @@ namespace Apex_
                 comboBoxStaff.Items.Add(name);
             }
 
+            dateTimePicker.Value = DateTime.Now;
+
             radioButtonAll.Checked = true;
             if (btn == "расписание")
             {
-                labelMain.Text = "Расписание";
+                buttonReport.Enabled = false;
+                labelMain.Text = "Рабочий график";
                 radioButtonAll.Text = "Всё расписание";
                 radioButtonDate.Text = "Расписание на выбранную дату";
                 radioButtonStaff.Text = "Расписание выбранного сотрудника";

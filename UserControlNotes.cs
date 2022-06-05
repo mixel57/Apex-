@@ -33,7 +33,7 @@ namespace Apex_
 
         private void labelDeleteNotes_Click(object sender, EventArgs e)
         {
-            DialogResult del = MessageBox.Show("Вы увернеы, что хотите удалить эту записку?", "", MessageBoxButtons.YesNo);
+            DialogResult del = MessageBox.Show("Вы увернеы, что хотите удалить эту заметку?", "", MessageBoxButtons.YesNo);
             switch (del)
             {
                 case DialogResult.Yes:

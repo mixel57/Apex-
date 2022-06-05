@@ -32,8 +32,8 @@ namespace Apex_
             labelHello.Text = helloName;
 
             string sql = "SELECT notes.id_notes as \"Номер заметки\", notes.date_notes as \"Дата и время\", notes.text_notes as \"Текст\", "
-                + "staff.first_name as \"Имя\", staff.last_name as \"Фамилия\", staff.post as \"Должность\" FROM notes INNER JOIN users ON notes.users_id_user = users.id_user "
-                + "INNER JOIN staff ON staff.id_staff = users.staff_id_staff;";
+                + "staff.first_name as \"Имя\", staff.last_name as \"Фамилия\", staff.post as \"Должность\" FROM notes INNER JOIN users ON " +
+                "notes.users_id_user = users.id_user INNER JOIN staff ON staff.id_staff = users.staff_id_staff;";
 
             DataBase.dsTable_Fill("Заметки", sql);
 
@@ -63,8 +63,8 @@ namespace Apex_
         private void buttonRefresh_Click(object sender, EventArgs e)
         {
             string sql = "SELECT notes.id_notes as \"Номер заметки\", notes.date_notes as \"Дата и время\", notes.text_notes as \"Текст\", "
-                + "staff.first_name as \"Имя\", staff.last_name as \"Фамилия\", staff.post as \"Должность\" FROM notes INNER JOIN users ON notes.users_id_user = users.id_user "
-                + "INNER JOIN staff ON staff.id_staff = users.staff_id_staff;";
+                + "staff.first_name as \"Имя\", staff.last_name as \"Фамилия\", staff.post as \"Должность\" FROM notes INNER JOIN users ON notes.users_id_user"
+                + " = users.id_user INNER JOIN staff ON staff.id_staff = users.staff_id_staff;";
 
             DataBase.dsTable_Fill("Заметки", sql);
 
@@ -125,6 +125,7 @@ namespace Apex_
         }
         private void buttonAddNotes_Click(object sender, EventArgs e)
         {
+            if ( textBoxNotes.Text == "") { MessageBox.Show("Введите текст заметки", ""); return; }
             string sql = "SELECT MAX(id_notes) as \"Номер\" FROM notes";
             DataBase.dsTable_Fill("Наибольшее значение id_notes", sql);
             if (Convert.IsDBNull(DataBase.ds.Tables["Наибольшее значение id_notes"].Rows[0]["Номер"]))
@@ -144,8 +145,8 @@ namespace Apex_
 
             flowLayoutPanelMain.Controls.Clear();
             sql = "SELECT notes.id_notes as \"Номер заметки\", notes.date_notes as \"Дата и время\", notes.text_notes as \"Текст\", "
-                + "staff.first_name as \"Имя\", staff.last_name as \"Фамилия\", staff.post as \"Должность\" FROM notes INNER JOIN users ON notes.users_id_user = users.id_user "
-                + "INNER JOIN staff ON staff.id_staff = users.staff_id_staff;";
+                + "staff.first_name as \"Имя\", staff.last_name as \"Фамилия\", staff.post as \"Должность\" FROM notes INNER JOIN users " +
+                "ON notes.users_id_user = users.id_user INNER JOIN staff ON staff.id_staff = users.staff_id_staff;";
 
             DataBase.dsTable_Fill("Заметки", sql);
 

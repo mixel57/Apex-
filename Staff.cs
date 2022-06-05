@@ -22,6 +22,7 @@ namespace Apex_
                 label.Text = "Список сотрудников";
                 buttonAdd.Text = "Добавить сотрудника";
                 buttonRefrersh.Visible = false;
+                buttonAdd.Text = "Добавить";
             }
             if (lbl == "аккаунты")
             {
@@ -72,7 +73,6 @@ namespace Apex_
 
                 for (int n = DataBase.ds.Tables["Аккаунты полная"].Rows.Count - 1; n > -1; n--)
                 {
-                    idstaff = DataBase.ds.Tables["Сотрудники частичная"].Rows[n]["Номер сотрудника"].ToString();
                     fname = DataBase.ds.Tables["Сотрудники частичная"].Rows[n]["Имя"].ToString();
                     lname = DataBase.ds.Tables["Сотрудники частичная"].Rows[n]["Фамилия"].ToString();
                     patronymic = DataBase.ds.Tables["Сотрудники частичная"].Rows[n]["Отчество"].ToString();
@@ -81,7 +81,7 @@ namespace Apex_
                     password = DataBase.ds.Tables["Аккаунты полная"].Rows[n]["Пароль"].ToString();
                     admin = DataBase.ds.Tables["Аккаунты полная"].Rows[n]["Админ"].ToString();
 
-                    UserControlAccount userControlAccount = new UserControlAccount(idstaff, fname, lname, patronymic, iduser, login, password, admin);
+                    UserControlAccount userControlAccount = new UserControlAccount(fname, lname, patronymic, iduser, login, password, admin);
                     flowLayoutStaff.Controls.Add(userControlAccount);
                 }
             }
@@ -118,7 +118,6 @@ namespace Apex_
 
             for (int n = DataBase.ds.Tables["Аккаунты полная"].Rows.Count - 1; n > -1; n--)
             {
-                idstaff = DataBase.ds.Tables["Сотрудники частичная"].Rows[n]["Номер сотрудника"].ToString();
                 fname = DataBase.ds.Tables["Сотрудники частичная"].Rows[n]["Имя"].ToString();
                 lname = DataBase.ds.Tables["Сотрудники частичная"].Rows[n]["Фамилия"].ToString();
                 patronymic = DataBase.ds.Tables["Сотрудники частичная"].Rows[n]["Отчество"].ToString();
@@ -127,7 +126,7 @@ namespace Apex_
                 password = DataBase.ds.Tables["Аккаунты полная"].Rows[n]["Пароль"].ToString();
                 admin = DataBase.ds.Tables["Аккаунты полная"].Rows[n]["Админ"].ToString();
 
-                UserControlAccount userControlAccount = new UserControlAccount(idstaff, fname, lname, patronymic, iduser, login, password, admin);
+                UserControlAccount userControlAccount = new UserControlAccount(fname, lname, patronymic, iduser, login, password, admin);
                 flowLayoutStaff.Controls.Add(userControlAccount);
             }
         }

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.Drawing;
+using System.IO;
 
 namespace Apex_
 {
@@ -19,6 +21,13 @@ namespace Apex_
 
         private void UserControlStaff_Load(object sender, EventArgs e)
         {
+            if (File.Exists(Environment.CurrentDirectory + "\\Pictures\\" + idstaff + ".jpeg"))
+            {
+                Bitmap image = new Bitmap(Environment.CurrentDirectory + "\\Pictures\\" + idstaff + ".jpeg");
+                Image image1 = Image.FromHbitmap(image.GetHbitmap());
+                pictureBox1.Image = image1;
+                image.Dispose();
+            }
             labelFname.Text = fname;
             labelLname.Text = lname;
             labelPatronymic.Text = patronymic;

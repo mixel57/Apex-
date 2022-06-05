@@ -1,17 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Apex_
 {
     public partial class Accounts : Form
-    {   string iduser, login, password, admin, btn;
+    {
+        string iduser, login, password, admin, btn;
         public Accounts(string iduser, string login, string password, string admin, string btn)
         {
             InitializeComponent();
@@ -34,7 +28,7 @@ namespace Apex_
                 if (admin == "True")
                 {
                     textBoxAdmin.Text = "Да";
-                } 
+                }
                 else
                 {
                     textBoxAdmin.Text = "Нет";
@@ -47,7 +41,7 @@ namespace Apex_
                 textBoxAdmin.Visible = false;
                 textBoxLogin.Text = login;
                 textBoxPassword.Text = password;
-                if(admin == "True")
+                if (admin == "True")
                 {
                     comboBoxAdmin.Text = "Да";
                 }
@@ -69,8 +63,9 @@ namespace Apex_
             {
                 bool adminb;
                 if (comboBoxAdmin.Text == "Да") adminb = true; else adminb = false;
-                
-                string sql = "UPDATE users SET id_user = '" + iduser + "', login = '" + textBoxLogin.Text + "', password = '" + textBoxPassword.Text + "', admin = " + adminb + " WHERE id_user = " + Convert.ToInt32(iduser) + ";";
+
+                string sql = "UPDATE users SET id_user = '" + iduser + "', login = '" + textBoxLogin.Text + "', password = '" + 
+                    textBoxPassword.Text + "', admin = " + adminb + " WHERE id_user = " + Convert.ToInt32(iduser) + ";";
                 if (!DataBase.SqlRequest(sql)) return;
                 DataBase.ds.Tables["Аккаунты полная"].Rows.Add(new object[] {
                 iduser, textBoxLogin.Text, textBoxPassword.Text, adminb

@@ -1,22 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Apex_
 {
     public partial class UserControlAccount : UserControl
     {
-        string idstaff, fname, lname, patronymic, iduser, login, password, admin, btn;
-        public UserControlAccount(string idstaff, string fname, string lname, string patronymic, string iduser, string login, string password, string admin)
+        string fname, lname, patronymic, iduser, login, password, admin, btn;
+        public UserControlAccount(string fname, string lname, string patronymic, string iduser, string login, string password, string admin)
         {
             InitializeComponent();
-            this.idstaff = idstaff; this.fname = fname;
+            this.fname = fname;
             this.lname = lname; this.patronymic = patronymic;
             this.iduser = iduser; this.login = login;
             this.password = password; this.admin = admin;

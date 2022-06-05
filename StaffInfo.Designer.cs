@@ -64,6 +64,7 @@ namespace Apex_
             this.pictureBoxStaff.Location = new System.Drawing.Point(12, 12);
             this.pictureBoxStaff.Name = "pictureBoxStaff";
             this.pictureBoxStaff.Size = new System.Drawing.Size(128, 128);
+            this.pictureBoxStaff.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxStaff.TabIndex = 0;
             this.pictureBoxStaff.TabStop = false;
             // 
@@ -84,6 +85,7 @@ namespace Apex_
             this.buttonOpen.TabIndex = 15;
             this.buttonOpen.Text = "Сменить аватар";
             this.buttonOpen.UseVisualStyleBackColor = false;
+            this.buttonOpen.Click += new System.EventHandler(this.buttonOpen_Click);
             // 
             // label1
             // 
@@ -239,7 +241,7 @@ namespace Apex_
             this.button.Name = "button";
             this.button.Size = new System.Drawing.Size(448, 48);
             this.button.TabIndex = 19;
-            this.button.Text = "Закрыть";
+            this.button.Text = "Действие";
             this.button.UseVisualStyleBackColor = false;
             this.button.Click += new System.EventHandler(this.button_Click);
             // 
@@ -347,6 +349,7 @@ namespace Apex_
             this.Name = "StaffInfo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Апекс сотрудники";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.StaffInfo_FormClosed);
             this.Load += new System.EventHandler(this.StaffInfo_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxStaff)).EndInit();
             this.statusStrip.ResumeLayout(false);

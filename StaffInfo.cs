@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.Drawing;
+using System.IO;
+using Apex_.Properties;
 
 namespace Apex_
 {
@@ -16,11 +19,21 @@ namespace Apex_
             this.dismissal = dismissal; this.btn = btn;
             this.idmig = idmig; this.birthday = birthday;
         }
+
         private void StaffInfo_Load(object sender, EventArgs e)
         {
+            if (File.Exists(Environment.CurrentDirectory + "\\Pictures\\" + idstaff + ".jpeg"))
+            { 
+                Bitmap image = new Bitmap(Environment.CurrentDirectory + "\\Pictures\\" + idstaff + ".jpeg");
+                Image image1 = Image.FromHbitmap(image.GetHbitmap());
+                pictureBoxStaff.Image = image1;
+                image.Dispose();
+            } 
 
             if (btn == "open")
             {
+                buttonOpen.Enabled = false;
+                button.Text = "Закрыть";
                 comboBoxPost.Visible = false;
                 textBoxFname.ReadOnly = true; textBoxFname.Text = fname;
                 textBoxLname.ReadOnly = true; textBoxLname.Text = lname;
@@ -65,6 +78,7 @@ namespace Apex_
 
             if (btn == "add")
             {
+                pictureBoxStaff.Image = Resources.Apexperson;
                 textBoxPost.Visible = false;
                 maskedTextBoxDismissal.ReadOnly = true;
                 button.Text = "Добавить";
@@ -80,17 +94,27 @@ namespace Apex_
             }
         }
 
+        private void StaffInfo_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
+        }
+
         private void button_Click(object sender, EventArgs e)
         {
-            string sql = "SELECT MAX(id_staff) as \"Номер пользователя\", MAX(id_mig) as \"Номер миграции\" FROM staff, migrations;";
-            DataBase.dsTable_Fill("Наибольшее значение id", sql);
-            int numstaff = 1 + Convert.ToInt32(DataBase.ds.Tables["Наибольшее значение id"].Rows[0]["Номер пользователя"]);
-            int nummig = 1 + Convert.ToInt32(DataBase.ds.Tables["Наибольшее значение id"].Rows[0]["Номер миграции"]);
-
             if (btn == "open") this.DialogResult = DialogResult.OK;
             if (btn == "update")
             {
-                sql = "UPDATE staff SET id_staff = " + Convert.ToInt32(idstaff) + ", first_name = '" + textBoxFname.Text + "', last_name = '" + textBoxLname.Text + "', patronymic = '" + textBoxPatronymic.Text + "', post = '"
+                if (textBoxFname.Text == "") { MessageBox.Show("Введите имя", ""); return; }
+                if (textBoxLname.Text == "") { MessageBox.Show("Введите фамилию", ""); return; }
+                if (textBoxPatronymic.Text == "") { MessageBox.Show("Введите отчество", ""); return; }
+                if (comboBoxPost.Text == "") { MessageBox.Show("Выберите професиию", ""); return; }
+                if (textBoxAddress.Text == "") { MessageBox.Show("Введите адрес", ""); return; }
+                if (maskedTextBoxNumber.Text == "") { MessageBox.Show("Введите номер телефона", ""); return; }
+                if (maskedTextBoxBirthday.Text == "") { MessageBox.Show("Введите дату рождения", ""); return; }
+                if (maskedTextBoxHiring.Text == "") { MessageBox.Show("Введите дату трудоустройства", ""); return; }
+                if (maskedTextBoxDismissal.Text == "") { MessageBox.Show("Введите дату увольнения", ""); return; }
+
+                string sql = "UPDATE staff SET id_staff = " + Convert.ToInt32(idstaff) + ", first_name = '" + textBoxFname.Text + "', last_name = '" + textBoxLname.Text + "', patronymic = '" + textBoxPatronymic.Text + "', post = '"
                     + comboBoxPost.Text + "', home_address = '" + textBoxAddress.Text + "', phone_number = '" + maskedTextBoxNumber.Text + "', birthday = '" + maskedTextBoxBirthday.Text + "' WHERE id_staff = " + Convert.ToInt32(idstaff) + ";";
                 if (!DataBase.SqlRequest(sql)) return;
                 DataBase.ds.Tables["Сотрудники полная"].Rows.Add(new object[] {
@@ -104,11 +128,29 @@ namespace Apex_
                 idmig, maskedTextBoxHiring.Text, maskedTextBoxDismissal.Text, idstaff
                 });
 
+                File.Delete(Environment.CurrentDirectory + "\\Pictures\\" + idstaff + ".jpeg");
+                pictureBoxStaff.Image.Save(Environment.CurrentDirectory + "\\Pictures\\" + idstaff + ".jpeg", System.Drawing.Imaging.ImageFormat.Jpeg);
+
                 MessageBox.Show("Данные успешно обновлены", "");
             }
 
             if (btn == "add")
             {
+                if (textBoxFname.Text == "") { MessageBox.Show("Введите имя", ""); return; }
+                if (textBoxLname.Text == "") { MessageBox.Show("Введите фамилию", ""); return; }
+                if (textBoxPatronymic.Text == "") { MessageBox.Show("Введите отчество", ""); return; }
+                if (comboBoxPost.Text == "") { MessageBox.Show("Выберите професиию", ""); return; }
+                if (textBoxAddress.Text == "") { MessageBox.Show("Введите адрес", ""); return; }
+                if (maskedTextBoxNumber.Text == "") { MessageBox.Show("Введите номер телефона", ""); return; }
+                if (maskedTextBoxBirthday.Text == "") { MessageBox.Show("Введите дату рождения", ""); return; }
+                if (maskedTextBoxHiring.Text == "") { MessageBox.Show("Введите дату трудоустройства", ""); return; }
+                if (maskedTextBoxDismissal.Text == "") { MessageBox.Show("Введите дату увольнения", ""); return; }
+
+                string sql = "SELECT MAX(id_staff) as \"Номер пользователя\", MAX(id_mig) as \"Номер миграции\" FROM staff, migrations;";
+                DataBase.dsTable_Fill("Наибольшее значение id", sql);
+                int numstaff = 1 + Convert.ToInt32(DataBase.ds.Tables["Наибольшее значение id"].Rows[0]["Номер пользователя"]);
+                int nummig = 1 + Convert.ToInt32(DataBase.ds.Tables["Наибольшее значение id"].Rows[0]["Номер миграции"]);
+
                 sql = "SELECT * FROM staff WHERE first_name = '" + textBoxFname.Text + "' AND last_name = '" + textBoxLname.Text + "' AND patronymic = '" + textBoxPatronymic.Text + "';";
                 DataBase.dsTable_Fill("Сотрудник проверка", sql);
                 if (DataBase.ds.Tables["Сотрудник проверка"].Rows.Count == 1) { MessageBox.Show("Сотрудник с таким ФИО уже зарегистрирован", ""); return; }
@@ -125,7 +167,29 @@ namespace Apex_
                 nummig, maskedTextBoxHiring.Text, maskedTextBoxDismissal.Text
                 });
 
+                File.Delete(Environment.CurrentDirectory + "\\Pictures\\" + numstaff + ".jpeg");
+                pictureBoxStaff.Image.Save(Environment.CurrentDirectory + "\\Pictures\\" + numstaff + ".jpeg", System.Drawing.Imaging.ImageFormat.Jpeg);
+
                 MessageBox.Show("Данные успешно добавлены", "");
+            }
+        }
+
+        private void buttonOpen_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog opf = new OpenFileDialog();
+
+            opf.Filter = "Image Files(*.BMP;*.JPG;*.PNG;*.JPEG)|*.BMP;*.JPG;*.PNG;*.JPEG";
+
+            if(opf.ShowDialog() == DialogResult.OK)
+            {
+                try 
+                { 
+                    pictureBoxStaff.Image = new Bitmap(opf.FileName);
+                }
+                catch
+                {
+                    MessageBox.Show("Невозможно открыть выбранный файл", "");
+                }
             }
         }
     }

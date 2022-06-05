@@ -24,16 +24,16 @@ namespace Apex_
             NpgsqlCommand com;
             com = new NpgsqlCommand(sql, connection);
             connection.Open();
-            //try
-            //{
+            try
+            {
                 com.ExecuteNonQuery();
-            //}
-            //catch (NpgsqlException)
-            //{
-            //    MessageBox.Show("Обновление базы данных не было выполнено из-за не указания обновляемых данных" +
-            //        " или не соответствия их типов", "Ошибка!");
-            //    connection.Close(); return false;
-            //}
+            }
+            catch (NpgsqlException)
+            {
+                MessageBox.Show("Обновление базы данных не было выполнено из-за не указания обновляемых данных" +
+                    " или не соответствия их типов", "Ошибка!");
+                connection.Close(); return false;
+            }
             connection.Close();
             return true;
         }

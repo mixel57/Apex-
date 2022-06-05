@@ -28,7 +28,7 @@ namespace Apex_
             }
             catch (Exception)
             {
-                MessageBox.Show("", "");
+                MessageBox.Show("Ошибка открытия файла", "");
             }
         }
     }
