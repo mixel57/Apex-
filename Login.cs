@@ -44,9 +44,6 @@ namespace Apex_
         private void Login_Load(object sender, EventArgs e)
         {
             ActiveControl = textBoxLogin;
-
-            textBoxLogin.Text = "admin";
-            textBoxPassword.Text = "admin";
         }
     }
 }

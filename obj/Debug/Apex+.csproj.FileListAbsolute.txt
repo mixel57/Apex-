@@ -48,3 +48,4 @@ C:\Users\ssuro\source\repos\Apex+\Apex+\obj\Debug\Apex_.DataGridForm.resources
 C:\Users\ssuro\source\repos\Apex+\Apex+\obj\Debug\Apex_.UserControlAccount.resources
 C:\Users\ssuro\source\repos\Apex+\Apex+\obj\Debug\Apex_.Accounts.resources
 C:\Users\ssuro\source\repos\Apex+\Apex+\obj\Debug\Apex_.Schedule.resources
+C:\Users\ssuro\source\repos\Apex+\Apex+\obj\Debug\Apex_.Report.resources

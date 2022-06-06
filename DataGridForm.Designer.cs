@@ -34,6 +34,7 @@ namespace Apex_
             this.labelMain = new System.Windows.Forms.Label();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.groupBox = new System.Windows.Forms.GroupBox();
+            this.buttonReport = new System.Windows.Forms.Button();
             this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.comboBoxStaff = new System.Windows.Forms.ComboBox();
             this.radioButtonStaff = new System.Windows.Forms.RadioButton();
@@ -41,7 +42,6 @@ namespace Apex_
             this.radioButtonAll = new System.Windows.Forms.RadioButton();
             this.buttonLeft = new System.Windows.Forms.Button();
             this.buttonRight = new System.Windows.Forms.Button();
-            this.buttonReport = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.groupBox.SuspendLayout();
@@ -92,6 +92,25 @@ namespace Apex_
             this.groupBox.TabIndex = 2;
             this.groupBox.TabStop = false;
             this.groupBox.Text = "Запросы к данным";
+            // 
+            // buttonReport
+            // 
+            this.buttonReport.AutoSize = true;
+            this.buttonReport.BackColor = System.Drawing.Color.Wheat;
+            this.buttonReport.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonReport.FlatAppearance.BorderColor = System.Drawing.Color.SandyBrown;
+            this.buttonReport.FlatAppearance.MouseDownBackColor = System.Drawing.Color.SandyBrown;
+            this.buttonReport.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SandyBrown;
+            this.buttonReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonReport.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.buttonReport.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonReport.Location = new System.Drawing.Point(744, 99);
+            this.buttonReport.Name = "buttonReport";
+            this.buttonReport.Size = new System.Drawing.Size(160, 48);
+            this.buttonReport.TabIndex = 21;
+            this.buttonReport.Text = "Сформировать отчёт";
+            this.buttonReport.UseVisualStyleBackColor = false;
+            this.buttonReport.Click += new System.EventHandler(this.buttonReport_Click);
             // 
             // dateTimePicker
             // 
@@ -188,25 +207,6 @@ namespace Apex_
             this.buttonRight.Text = "Добавить/закрыть";
             this.buttonRight.UseVisualStyleBackColor = false;
             this.buttonRight.Click += new System.EventHandler(this.buttonRight_Click);
-            // 
-            // buttonReport
-            // 
-            this.buttonReport.AutoSize = true;
-            this.buttonReport.BackColor = System.Drawing.Color.Wheat;
-            this.buttonReport.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonReport.FlatAppearance.BorderColor = System.Drawing.Color.SandyBrown;
-            this.buttonReport.FlatAppearance.MouseDownBackColor = System.Drawing.Color.SandyBrown;
-            this.buttonReport.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SandyBrown;
-            this.buttonReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonReport.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.buttonReport.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.buttonReport.Location = new System.Drawing.Point(744, 99);
-            this.buttonReport.Name = "buttonReport";
-            this.buttonReport.Size = new System.Drawing.Size(160, 48);
-            this.buttonReport.TabIndex = 21;
-            this.buttonReport.Text = "Сформировать отчёт";
-            this.buttonReport.UseVisualStyleBackColor = false;
-            this.buttonReport.Click += new System.EventHandler(this.buttonRight_Click);
             // 
             // DataGridForm
             // 

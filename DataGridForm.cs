@@ -16,6 +16,7 @@ namespace Apex_
         string fname, lname, name;
         private void DataGridForm_Load(object sender, EventArgs e)
         {
+            if (adminCheck == false) { buttonReport.Visible = false; }
             dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
             string sql = "SELECT staff.id_staff, staff.first_name as \"Имя\", staff.last_name as \"Фамилия\", migrations.date_dismissal FROM staff "
@@ -36,7 +37,6 @@ namespace Apex_
             radioButtonAll.Checked = true;
             if (btn == "расписание")
             {
-                buttonReport.Enabled = false;
                 labelMain.Text = "Рабочий график";
                 radioButtonAll.Text = "Всё расписание";
                 radioButtonDate.Text = "Расписание на выбранную дату";
@@ -48,6 +48,7 @@ namespace Apex_
 
             if (btn == "отметки")
             {
+                buttonReport.Visible = false;
                 labelMain.Text = "Отметки";
                 radioButtonAll.Text = "Все отметки";
                 radioButtonDate.Text = "Отметки на выбранную дату";
@@ -64,19 +65,20 @@ namespace Apex_
                 if (btn == "отметки")
                 {
                     string sql = "SELECT staff.first_name as \"Имя\", staff.last_name as \"Фамилия\", staff.patronymic as \"Отчество\", staff.post as \"Должность\","
-                        + "chec.chec as \"Дата отметки\" FROM chec INNER JOIN staff ON staff.id_staff = chec.staff_id_staff ORDER BY id_chec DESC;";
-                    DataBase.dsTable_Fill("Отметки по id", sql);
+                        + "chec.chec as \"Дата отметки\" FROM chec INNER JOIN staff ON staff.id_staff = chec.staff_id_staff ORDER BY chec DESC;";
+                    DataBase.dsTable_Fill("Отметки загрузка", sql);
 
-                    dataGridView.DataSource = DataBase.ds.Tables["Отметки по id"];
+                    dataGridView.DataSource = DataBase.ds.Tables["Отметки загрузка"];
                 }
 
                 if (btn == "расписание")
                 {
                     string sql = "SELECT staff.first_name as \"Имя\", staff.last_name as \"Фамилия\", staff.patronymic as \"Отчество\", staff.post as \"Должность\","
-                        + "schedule.date_work as \"Дата смены\", schedule.opening_hours as \"Часы работы\" FROM schedule INNER JOIN staff ON staff.id_staff = schedule.staff_id_staff ORDER BY id_sch DESC;";
-                    DataBase.dsTable_Fill("Расписание по id", sql);
+                        + "schedule.date_work as \"Дата смены\", schedule.opening_hours as \"Часы работы\" FROM schedule INNER JOIN staff ON staff.id_staff = "
+                        + "schedule.staff_id_staff ORDER BY date_work DESC;";
+                    DataBase.dsTable_Fill("Расписание загрузка", sql);
 
-                    dataGridView.DataSource = DataBase.ds.Tables["Расписание по id"];
+                    dataGridView.DataSource = DataBase.ds.Tables["Расписание загрузка"];
                 }
             }
         }
@@ -151,6 +153,14 @@ namespace Apex_
         private void DataGridForm_Activated(object sender, EventArgs e)
         {
             radioButtonAll.Checked = false; radioButtonAll.Checked = true;
+        }
+
+        private void buttonReport_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Report report = new Report();
+            report.ShowDialog();
+            this.Show();
         }
 
         private void buttonLeft_Click(object sender, EventArgs e)

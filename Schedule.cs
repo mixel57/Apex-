@@ -19,11 +19,6 @@ namespace Apex_
         string fname, lname, name;
         private void Schedule_Load(object sender, EventArgs e)
         {
-            string sql = "SELECT staff.id_staff, staff.first_name as \"Имя\", staff.last_name as \"Фамилия\", migrations.date_dismissal FROM staff "
-                + "INNER JOIN migrations ON migrations.staff_id_staff = staff.id_staff WHERE migrations.date_dismissal = '9999-12-31';";
-
-            DataBase.dsTable_Fill("Пользователи", sql);
-
             for (int n = DataBase.ds.Tables["Пользователи"].Rows.Count - 1; n > -1; n--)
             {
                 fname = DataBase.ds.Tables["Пользователи"].Rows[n]["Имя"].ToString();
